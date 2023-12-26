@@ -41,12 +41,16 @@ public abstract class Pessoa implements Serializable {
 	protected String email;
 	protected String senha;
 	
+	//assegura que a lista perfil virá imediamente quando chamada junta com toda a entidade
 	@ElementCollection (fetch = FetchType.EAGER)
+	//aqui eu digo que quero ter uma tabela apenas com os valores
+	//dessa lista
 	@CollectionTable(name = "PERFIS")
 	// o new Hash faz uma verificação para evitar de nullpoint exception
 	// e o Set não permite dois perfis de valores iguais
 	protected Set<Integer> perfis = new HashSet<>();
 
+	//pattern = padrão = mês precisa tá com M maiúsculo
 	@JsonFormat(pattern = "dd/MM/yyyy")
 	LocalDate data =  LocalDate.now();
 	
