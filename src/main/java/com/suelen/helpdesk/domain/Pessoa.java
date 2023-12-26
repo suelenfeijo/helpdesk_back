@@ -24,7 +24,6 @@ import com.suelen.helpdesk.domain.enums.Perfil;
 @Entity
 // a classe pessoa não poderá ser instânciada por que é abstrata, apenas pode ser herdade
 public abstract class Pessoa implements Serializable {
-
 	private static final long serialVersionUID = 1L;
 	
 	@Id

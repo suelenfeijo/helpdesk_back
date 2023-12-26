@@ -8,6 +8,9 @@ import java.util.stream.Collectors;
 
 import javax.persistence.CollectionTable;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
 import javax.persistence.OneToMany;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
@@ -18,9 +21,12 @@ public class Tecnico extends Pessoa {
 	
 	@CollectionTable(name = "PERFIS")
 	protected Set<Integer> perfis = new HashSet<>();
-	
 	private static final long serialVersionUID = 1L;
-
+	
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private Integer id;
+	
 	@JsonIgnore
 	@OneToMany(mappedBy = "tecnico")
 	private List<Chamado> chamados = new ArrayList<>();
