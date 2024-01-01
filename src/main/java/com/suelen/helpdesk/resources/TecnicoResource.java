@@ -1,14 +1,20 @@
 package com.suelen.helpdesk.resources;
 
+import java.net.URI;
 import java.util.List;
 import java.util.stream.Collectors;
+
+import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import com.suelen.helpdesk.domain.Tecnico;
 import com.suelen.helpdesk.domain.dtos.TecnicoDTO;
@@ -24,6 +30,20 @@ public class TecnicoResource {
 	@Autowired
 	private TecnicoService service;
 
+	
+//	@PreAuthorize("hasAnyRole('ADMIN')")
+	/*
+	 * requestBody = no corpo da req deve vir um tecDTO
+	 * uri = quando cria um obj, ele recebe um id. a url retorna a url de acesso
+	 * , no path, o endereço de acesso, e aí pega o metodo que trás um id, e passa para uri.
+	 */
+	@PostMapping
+	public ResponseEntity<TecnicoDTO> create(@Valid @RequestBody TecnicoDTO objDTO) {
+		Tecnico newObj = service.create(objDTO);
+		URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(newObj.getId()).toUri();
+		return ResponseEntity.created(uri).build();
+	}
+	
 	@GetMapping(value = "/{id}")
 	public ResponseEntity<TecnicoDTO> findById(@PathVariable Integer id) {
 		Tecnico obj = service.findById(id);
