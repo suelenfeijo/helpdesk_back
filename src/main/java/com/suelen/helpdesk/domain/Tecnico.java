@@ -19,9 +19,7 @@ import com.suelen.helpdesk.domain.enums.Perfil;
 @Entity
 public class Tecnico extends Pessoa {
 	
-	@CollectionTable(name = "PERFIS")
-	protected Set<Integer> perfis = new HashSet<>();
-	private static final long serialVersionUID = 1L;
+
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -40,6 +38,7 @@ public class Tecnico extends Pessoa {
 	public Tecnico(Integer id, String nome, String cpf, String email, String senha) {
 		super(id, nome, cpf, email, senha );
 		addPerfil(Perfil.CLIENTE);
+
 
 	}
 	
