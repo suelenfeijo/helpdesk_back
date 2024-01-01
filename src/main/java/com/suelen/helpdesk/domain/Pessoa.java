@@ -30,20 +30,20 @@ public abstract class Pessoa implements Serializable {
 	@Id
 	@GeneratedValue (strategy = GenerationType.IDENTITY )
 	protected Integer id;
-	@NotNull
+	
 	protected String nome;
 	
 	//Faz todo o cálculo para validar se é um cpf
 	@CPF
-	@NotNull
+	
 	@Column (unique = true)
 	protected String cpf;
 	
-	@NotNull
+	
 	@Column (unique = true)
 	protected String email;
 	
-	@NotNull
+	
 	protected String senha;
 	
 	//assegura que a lista perfil virá imediamente quando chamada junta com toda a entidade
