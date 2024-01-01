@@ -36,6 +36,8 @@ public class TecnicoResource {
 	 * requestBody = no corpo da req deve vir um tecDTO
 	 * uri = quando cria um obj, ele recebe um id. a url retorna a url de acesso
 	 * , no path, o endereço de acesso, e aí pega o metodo que trás um id, e passa para uri.
+		a anotação valid = valida se todos os campos estão notnull
+		
 	 */
 	@PostMapping
 	public ResponseEntity<TecnicoDTO> create(@Valid @RequestBody TecnicoDTO objDTO) {
