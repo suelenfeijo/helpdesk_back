@@ -5,7 +5,7 @@ import java.util.List;
 
 
 /*
- * herdando tudo que o erro padrão standrd error tem
+ * herdando tudo que o erro padrão standard error tem
  */
 public class ValidationError extends StandardError {
 	private static final long serialVersionUID = 1L;
