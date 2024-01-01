@@ -51,7 +51,7 @@ public abstract class Pessoa implements Serializable {
 
 	//pattern = padrão = mês precisa tá com M maiúsculo
 	@JsonFormat(pattern = "dd/MM/yyyy")
-	LocalDate data =  LocalDate.now();
+	LocalDate dataCriacao =  LocalDate.now();
 	
 
 		
@@ -114,11 +114,11 @@ public abstract class Pessoa implements Serializable {
 	public void addPerfil(Perfil perfil) {
 		this.perfis.add (perfil.getCodigo());
 	}
-	public LocalDate getData() {
-		return data;
+	public LocalDate getDataCriacao() {
+		return dataCriacao;
 	}
-	public void setData(LocalDate data) {
-		this.data = data;
+	public void setDataCriacao(LocalDate dataCriacao) {
+		this.dataCriacao = dataCriacao;
 	
 		
 //	o hashCode equals faz comparação de um objeto pelo valor dos atributos, não do valor em memória
