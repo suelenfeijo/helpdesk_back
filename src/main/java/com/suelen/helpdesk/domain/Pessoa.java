@@ -59,6 +59,7 @@ public abstract class Pessoa implements Serializable {
 		super();
 		addPerfil(Perfil.CLIENTE);
 
+
 	}
 	
 	
@@ -70,6 +71,7 @@ public abstract class Pessoa implements Serializable {
 		this.email = email;
 		this.senha = senha;
 		addPerfil(Perfil.CLIENTE);
+
 
 	}
 
