@@ -39,12 +39,15 @@ public class ResourceExceptionHandler {
 		return ResponseEntity.status(HttpStatus.NOT_FOUND).body(error);
 	}
 	
+	/*
+	 * .class sempre do nosso pacote.
+	 */
 	@ExceptionHandler(DataIntegrityViolationException.class)
 	public ResponseEntity<StandardError> dataIntegrityViolationException(DataIntegrityViolationException ex,
 			HttpServletRequest request) {
 
 		StandardError error = new StandardError(System.currentTimeMillis(), HttpStatus.BAD_REQUEST.value(),
-				"Violação de dados", ex.getMessage(), request.getRequestURI());
+				"Violação de dados a nível de banco de dados", ex.getMessage(), request.getRequestURI());
 
 		return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(error);
 	}

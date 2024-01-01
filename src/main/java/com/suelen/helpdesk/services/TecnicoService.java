@@ -18,16 +18,16 @@ import com.suelen.helpdesk.services.exceptions.ObjectNotFoundException;
 public class TecnicoService {
 
 	@Autowired
-	TecnicoRepository repository;
+	private	TecnicoRepository repository;
 	
 	@Autowired
-	PessoaRepository pessoaRepository;
+	private PessoaRepository pessoaRepository;
 	
 	
 	public Tecnico create(TecnicoDTO objDTO) {
 		objDTO.setId(null);
 	//	objDTO.setSenha(encoder.encode(objDTO.getSenha()));
-		//validaPorCpfEEmail(objDTO);
+		validaPorCpfEEmail(objDTO);
 		Tecnico newObj = new Tecnico(objDTO);
 		return repository.save(newObj);
 	}
@@ -50,7 +50,7 @@ public class TecnicoService {
 	}
 	
 	
-	/*private void validaPorCpfEEmail(TecnicoDTO objDTO) {
+	private void validaPorCpfEEmail(TecnicoDTO objDTO) {
 		Optional<Pessoa> obj = pessoaRepository.findByCpf(objDTO.getCpf());
 		if (obj.isPresent() && obj.get().getId() != objDTO.getId()) {
 			throw new DataIntegrityViolationException("CPF já cadastrado no sistema!");
@@ -60,6 +60,6 @@ public class TecnicoService {
 		if (obj.isPresent() && obj.get().getId() != objDTO.getId()) {
 			throw new DataIntegrityViolationException("E-mail já cadastrado no sistema!");
 		}
-	}*/
+	}
 
 }
