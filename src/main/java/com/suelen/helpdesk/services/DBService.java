@@ -37,8 +37,10 @@ public class DBService {
 
 	Chamado c1 = new Chamado(null, Prioridade.ALTA, Status.ABERTO, "Conserto pc", "hd quebrou", tec1, cli1);
 
+	Chamado c2 = new Chamado(null, Prioridade.ALTA, Status.ENCERRADO, "Conserto impressora", "cabeça de impressão ruim", tec1, cli1);
+
 	tecnicoRepository.saveAll(Arrays.asList(tec1,tec2));
 	clienteRepository.saveAll(Arrays.asList(cli1));
-	chamadoRepository.saveAll(Arrays.asList(c1));
+	chamadoRepository.saveAll(Arrays.asList(c1,c2));
 }
 }
