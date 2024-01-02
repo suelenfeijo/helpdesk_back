@@ -50,11 +50,22 @@ public class JWTUtil {
 	}
 
 	
-	/*
+	/*claims é um tipo do jwt que armazena as reivindicações do token, então
+	 *conseguimos pegar algumas informações dele.
+	 *Claims claims = getClaims(token) -> o getClaims onde passa como parametro o token que chega na url
+	 *se o claims é diferente de nulo, chama o claims.getSubject() , esse getSubject pega o username
+	 *que no caso aqui é o email.
+	 *
+	 *Date expirationDate = claims.getExpiration() -> de forma parecida com o getSubject, porém agora pega
+	 *o tempo de expiração.
+	 *Date now = new Date(System.currentTimeMillis()) -> pega o momento atual em milesegundos.
+	 *if(username != null && expirationDate != null && now.before(expirationDate)) 
+	 *nessa última parte, a lógica explicada -> se username e expiration é ! de nulo, e agora é antes do token expirar
+	 *, no caso quer dizer que o token ainda não expirou.
 	 * 
 	 */
 	
-	/*public boolean tokenValido(String token) {
+	public boolean tokenValido(String token) {
 		Claims claims = getClaims(token);
 		if(claims != null) {
 			String username = claims.getSubject();
@@ -66,29 +77,29 @@ public class JWTUtil {
 			}
 		}
 		return false;
-	}*/
+	}
 
 	/*
-	 * 
+	 * decodifica o secret e volta a origem do que foi usado para ser gerado
 	 */
-	/*private Claims getClaims(String token) {
+	private Claims getClaims(String token) {
 		try {
 			return Jwts.parser().setSigningKey(secret.getBytes()).parseClaimsJws(token).getBody();
 		} catch (Exception e) {
 			return null;
 		}
-	}*/
+	}
 
 	
 	/*
-	 * 
+	 * retorna o username que está no token
 	 */
-	/*public String getUsername(String token) {
+	public String getUsername(String token) {
 		Claims claims = getClaims(token);
 		if(claims != null) {
 			return claims.getSubject();
 		}
 		return null;
-	}*/
+	}
 	
 }

@@ -36,7 +36,8 @@ public class DBService {
 	tec1.addPerfil(Perfil.ADMIN);
 	
 	Tecnico tec2 = new Tecnico(null, "feijo", "70362484406", "suelen@mail.com", encoder.encode("123"));
-	
+	tec2.addPerfil(Perfil.ADMIN);
+
 	
 	Cliente cli1 = new Cliente(null, "Sia Chandeler", "66354895252", "sia@mail.com", encoder.encode("123"));
 

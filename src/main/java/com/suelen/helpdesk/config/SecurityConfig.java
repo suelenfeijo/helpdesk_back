@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.core.env.Environment;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
+import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
@@ -17,10 +18,12 @@ import org.springframework.web.cors.CorsConfigurationSource;
 import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
 
 import com.suelen.helpdesk.security.JWTAuthenticationFilter;
+import com.suelen.helpdesk.security.JWTAuthorizationFilter;
 import com.suelen.helpdesk.security.JWTUtil;
 
 @EnableWebSecurity //essa anotação já possui @configuration
-//@EnableGlobalMethodSecurity(prePostEnabled = true)
+//essa anotação é quem permite ser possível utilizar a anotação preAutorize
+@EnableGlobalMethodSecurity(prePostEnabled = true)
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
 	/*
@@ -60,7 +63,12 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 		 * e retorna um authenticationManager  , e o jwtUtil
 		 */
 	    http.addFilter(new JWTAuthenticationFilter(authenticationManager(), jwtUtil));
-	//	http.addFilter(new JWTAuthorizationFilter(authenticationManager(), jwtUtil, userDetailsService));
+	    
+	    /*
+	     * adicionando filtro de autorização que recebe um authenticationManager, um jwtUtil, e userDetailsService
+	     * e o authenticationManager, é também do WebSecurityConfigurerAdapter
+	     */
+		http.addFilter(new JWTAuthorizationFilter(authenticationManager(), jwtUtil, userDetailsService));
 		/*
 		 * autorizando o h2
 		 */
