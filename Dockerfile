@@ -9,7 +9,7 @@ RUN apt-get install maven -y
 RUN mvn clean install
 
 FROM openjdk:11-jdk-slim
-EXPOSE 8090
+EXPOSE 8091
 COPY --from=build /target/helpdesk-1.0.0-SNAPSHOT.jar app.jar
 
 ENTRYPOINT [ "java", "-jar", "app.jar" ]
