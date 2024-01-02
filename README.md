@@ -16,13 +16,13 @@ No desenvolvimento de um back-end de uma solução fullstack para um helpdesk, n
 * MySQL em projeto Spring Boot
 * Validações com Validations
 
-Link da API | https://helpdesk-backend-91c2.onrender.com
+Link da API | https://helpdesk-back.onrender.com
 ---|-----------
 
 Pequena amostra da api:
 
 ```POST``` Acessando o login e recebendo um token jwt no header <br/>
- uri: | https://helpdesk-backend-91c2.onrender.com/login
+ uri: | https://helpdesk-back.onrender.com/login
  --|--
  ```
  arquivo JSON
